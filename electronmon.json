@@ -1,0 +1,12 @@
+{
+  "main": "dist/electron/main.js",
+  "watch": ["dist/electron"],
+  "ignore": [
+    "dist/electron/**/*.map",
+    "dist/electron/**/*.tsbuildinfo"
+  ],
+  "delay": 300,
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

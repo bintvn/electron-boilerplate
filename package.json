@@ -1,0 +1,74 @@
+{
+  "name": "electron-boilerplate",
+  "version": "0.1.0",
+  "description": "Electron React Tailwind Typescript Boilerplate",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"tsc -p src/electron --watch\" \"wait-on dist/electron/main.js && wait-on http://localhost:5173 && electronmon dist/electron/main.js\"",
+    "build:renderer": "vite build",
+    "build:electron": "tsc -p src/electron",
+    "build": "npm run build:renderer && npm run build:electron",
+    "build:release": "npm run build && electron-builder",
+    "start": "npm run build && electronmon ."
+  },
+  "build": {
+    "appId": "co.bintvn.electron-boilerplate",
+    "files": [
+      "dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "src/electron/tray.ico",
+        "to": "tray.ico"
+      }
+    ],
+    "productName": "Electron Boilerplate",
+    "copyright": "Copyright © 2026 Bintan",
+    "directories": {
+      "output": "release/${name}"
+    },
+    "asar": true,
+    "nsis": {
+      "include": "installer.nsh",
+      "artifactName": "${name}-Setup-${version}.${ext}",
+      "shortcutName": "${productName}",
+      "uninstallDisplayName": "${productName}",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "tailwind",
+    "typescript",
+    "boilerplate"
+  ],
+  "author": "Bintan <hello@bintvn.co>",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "electron-updater": "^6.8.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
+    "electron": "^41.3.0",
+    "electron-builder": "^26.8.1",
+    "electronmon": "^2.0.4",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.10",
+    "wait-on": "^9.0.5"
+  }
+}

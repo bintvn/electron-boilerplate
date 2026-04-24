@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.drag {
+    -webkit-app-region: drag;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}
+
+.no-drag {
+    -webkit-app-region: no-drag;
+}
